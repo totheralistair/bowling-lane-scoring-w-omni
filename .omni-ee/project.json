@@ -1,0 +1,7 @@
+{
+  "schema_version": 2,
+  "kind": "omni_project_binding",
+  "repository": "OMNI",
+  "workspace_id": "bf5bf327-8f1e-439c-b875-59f6ef1ce8b5",
+  "environment_origin": "https://dd-api.app.omni3.ai"
+}
