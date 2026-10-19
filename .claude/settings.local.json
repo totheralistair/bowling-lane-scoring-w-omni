@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(omni --help)",
+      "Bash(omni auth *)"
+    ]
+  }
+}
