@@ -1,6 +1,6 @@
 # Conversation Transcript
 
-Session `ddd42720-15c3-4c92-8cdd-484cad1d8d5c` · last updated 2026-11-10 02:29 UTC
+Session `ddd42720-15c3-4c92-8cdd-484cad1d8d5c` · last updated 2026-11-10 02:33 UTC
 
 ### User · 23:53
 
@@ -1596,3 +1596,106 @@ yes please. also  - are the transcripts complete up to including this instructio
 ### Claude · 02:29
 
 > _tool: Bash — Remove duplicate memory and re-sync today's transcript_
+
+### Claude · 02:29
+
+> _tool: Bash — Confirm instruction is in transcript, commit and push_
+
+### Claude · 02:29
+
+> _tool: Bash — Check the instruction is in the transcript_
+
+### Claude · 02:29
+
+I've moved the transcript reminder into your personal instructions file, `/Users/alistaircockburn/.claude/CLAUDE.md`, under a new heading **"Session transcripts"**. In every project, Claude will keep a daily `<short-project-name>-transcript-YYYYMMDD.md` in the project folder. If a project doesn't have the export script, Claude copies it over from this bowling project. You'll be reminded to re-sync at each stage close and before closing a session. I removed my folder-only copy, so the reminder now lives in one place.
+
+**The transcripts on disk are complete up to and including your instruction.** I re-synced today's file just now. Your message "are the transcripts complete up to including this instruction?" is at line 1590 of `bowling-transcript-20261109.md`, and the file ends with my steps that followed it. The 3 November transcript was finished long ago and hasn't changed.
+
+**GitHub doesn't have that last version yet.** My attempt to save and push the re-synced transcript was blocked by Claude Code's auto-mode safety check. It doesn't say why, but I'd guess it's because the commit included a file built from the raw session log. The GitHub copy stops at the park (commit `d3c7cce`). The newer version is on disk, with only this one file unsaved.
+
+You can push it yourself by typing this in the prompt:
+
+```
+! cd ~/Desktop/OMNI/bowling-lane-scoring && git commit -am "Re-sync today's transcript at session close" && git push origin main
+```
+
+The transcript will also be included the next time anything is saved to git.
+
+### User · 02:31
+
+cd ~/Desktop/OMNI/bowling-lane-scoring && git commit -am "Re-sync today's transcript at session close" && git push origin main
+
+### Claude · 02:31
+
+> _tool: Bash — Commit and push the re-synced transcript_
+
+### Claude · 02:32
+
+I ran your command, and it worked. The re-synced transcript is now on GitHub (commit `6f66934`), and nothing in the folder is left unsaved.
+
+GitHub now has all of this session's work:
+- the intent map record
+- the goal decision record
+- the use case
+- both transcripts, with today's running up to your question about whether they were complete
+- the parked guide bookmark
+
+The bookmark is parked, and the shared place `~/.omni-ee` is empty, so your other project can start cleanly.
+
+When you come back to bowling, say **"restore the guide"**, then run `/omni-guide`. Goal writing picks up at the charging question: how the desk knows how many games a group played.
+
+### User · 02:32
+
+we all done? anything missing on the close-down>
+
+### Claude · 02:32
+
+Almost. Everything that matters is saved:
+
+- ✅ All work is on GitHub (commit `6f66934`), and the folder has no unsaved changes.
+- ✅ The guide bookmark is parked in the project, and the shared place is empty.
+- ✅ The resume point is written down: "restore the guide", then `/omni-guide`, then the charging question.
+- ✅ The park and restore routine and the transcript reminder are in your personal instructions for every project.
+
+Two small loose ends:
+
+1. **The transcript is a few messages short.** It ends at your "are the transcripts complete" question, so it's missing the push you just ran and this exchange. The next session will be a new session with its own log, so these last few lines won't be picked up later. One more re-sync and push would capture them. It will always trail by the final message, but nothing in these messages is a decision.
+2. **The OMNI bug report hasn't been sent.** When we chose the hand-swap routine, I suggested also telling the OMNI team that the guide bookmark can't move into a project (`guide-state migrate` only accepts the "repository ready" stage, and no command gets it there). That's still undone. It isn't urgent, but until it's fixed you'll be doing the park and restore routine by hand. I've noted it here so it isn't forgotten.
+
+Do you want the final transcript re-sync and push before you go?
+
+### User · 02:33
+
+are you able to send the omni team that? or do i need to do it manually tomorrow?
+
+### Claude · 02:33
+
+I can't send it directly. I don't have a channel to the OMNI team, and I don't know where they take reports. The feedback tool I have goes to the Claude Code team, not OMNI. What I can do is write the report now, so tomorrow you only have to paste it:
+
+### Claude · 02:33
+
+> _tool: Write — /Users/alistaircockburn/Desktop/OMNI/bowling-lane-scoring/docs/omni-feedback/2026-11-09-guide-state-cannot-move-to-project.md_
+
+### Claude · 02:33
+
+You don't need to write anything tomorrow. The report is ready at `docs/omni-feedback/2026-11-09-guide-state-cannot-move-to-project.md`. It covers:
+
+- What you were trying to do.
+- Each command I tried and the exact error it gave.
+- What you'd expect to happen instead.
+- Why it matters: only one guide run per Mac.
+- The swap routine you're using meanwhile.
+- The broken update check (the "not found" error), noted as a second, smaller problem.
+
+It leaves out your workspace ID and anything private.
+
+Tomorrow you'd just paste it wherever the OMNI team takes reports. If you tell me where that is, in a future session I can do more:
+- **GitHub issues:** I can file it directly.
+- **Email:** I can draft it in Gmail for you to send.
+- **Slack or a web form:** you paste it.
+
+The file isn't saved to git yet. Shall I re-sync the transcript and save and push both together, as the last close-down step?
+
+### User · 02:33
+
+please do a tidy close-down of this session so I can close the terminal

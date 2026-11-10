@@ -17,6 +17,7 @@ A summary of how each decision behind the goal document was made: who decided, w
 - **Entry point (altitude):** `general-objective`, i.e. epic planning (agent-proposed, human accepted "yes", 2026-11-09)
 - **Next contribution only the human can make:** how charging works today: how the desk knows how many games a group played (use case open issue 1). The user called it a real open problem. The question asked at session close offered: the group says, the desk counts paper sheets, the desk reads the pinsetter, or the alley charges by time (which would remove the Next Game charging risk).
 - **Session closed 2026-11-09** in phase 1. Resume with `/goal-writing` (or `/omni-guide`), read this record and `docs/goal/use-case-play-a-game.md`, and re-ask the charging question.
+- **Outside goal writing:** the OMNI bug report is drafted at `docs/omni-feedback/2026-11-09-guide-state-cannot-move-to-project.md`; the user will send it to the OMNI team.
 - **Still to cover in phase 1 after charging:** the rest of the use case's open issues (group size, a missing message in the trial, a roll out of turn); the agent's in/out list (unclaimed); the "feels invisible" principle (unclaimed); limits such as speed, reliability and security; the proof environment (where the trial's proof runs; the pinsetter demo); trade-off priorities; success criteria.
 
 ## Idea (hypothesis)
