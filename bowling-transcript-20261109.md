@@ -1,6 +1,6 @@
 # Conversation Transcript
 
-Session `ddd42720-15c3-4c92-8cdd-484cad1d8d5c` · last updated 2026-11-10 01:22 UTC
+Session `ddd42720-15c3-4c92-8cdd-484cad1d8d5c` · last updated 2026-11-10 02:24 UTC
 
 ### User · 23:53
 
@@ -941,3 +941,540 @@ Phase 0 of 4: Idea · done: idea, headline fix, depth standard, park and restore
 ### User · 01:22
 
 yes
+
+### Claude · 01:22
+
+> _tool: Bash — Refresh transcript, scan for secrets, stage changes_
+
+### Claude · 01:22
+
+> _tool: Bash — Commit and push to GitHub_
+
+### Claude · 01:23
+
+Everything is saved and pushed to GitHub (`bowling-lane-scoring-w-omni`, commit `72b8848`). Just before saving, I re-synced today's transcript so the saved copy is current. Your notes are now kept off this Mac as well.
+
+Now the last choice for this opening phase: **where the OMNI agents start work.** The goal document can hand over at one of three points:
+
+- **Epic planning** (OMNI calls it `general-objective`). You give the *what and why*: the problem, who it's for, what's in and out, how it should behave, and how we'll know it worked. The agents break that into chunks of work, then design and build it.
+- **Architecture** (`functional-spec`). You also pin down every behaviour in detail, so the agents begin by designing the parts.
+- **Code planning** (`technical-spec`). You also hand over the design itself: the parts, how they connect, and why.
+
+**My suggestion: epic planning.**
+- **Pro:** your intent map already settles the what and why. Bowling's scoring rules are standard, so the agents don't need you to spell out every frame. Things you've already fixed still go in as limits the agents must respect: the pinsetter message, no rules in the pinsetter, no timers, and no login or payment. That last one guards against the earlier project's failure, where agents put lane assignment and payment into the wrong app.
+- **Con:** the agents decide how to split the work. That's where the earlier failure happened, so we'll need to state each app's job clearly in the document.
+
+Shall the document target epic planning?
+
+Phase 0 of 4: Idea · done: idea, headline fix, depth standard, park and restore routine, notes saved to GitHub · next: the starting point, then phase 1 (grounding the decisions)
+
+### User · 01:24
+
+yes .... and did we finally hit the point about saving things that we hadn't reached before? I can't tell what was needed, there
+
+### Claude · 01:24
+
+> _tool: Bash — Record entry point and read the general-objective rubric_
+
+### Claude · 01:24
+
+Yes. Here's exactly where each piece stands:
+
+| Piece | Safe? | Where |
+|---|---|---|
+| Intent map | ✅ | Its own project on OMNI's server |
+| Workspace link | ✅ | In this folder, and on GitHub |
+| Notes: session record, goal decision record, transcripts | ✅ **Done just now** | In this folder, and on GitHub |
+| Guide bookmark | ⏳ **Not yet** | Still only in the shared place, `/Users/alistaircockburn/.omni-ee/guide-state.json` |
+
+The bookmark is the one piece left. It gets its project-specific home the first time you say **"park the guide"** at the end of a session. That puts a dated copy in this folder and clears the shared place, and from then on your other project can start safely. Leave it in the shared place while we're still working today, because the guide reads it from there.
+
+Epic planning is now recorded as the starting point. That closes the opening phase.
+
+---
+
+**Phase 1: Ground and surface.** I'm switching to coaching. The decisions this document needs aren't all settled yet, so I'll ask, one at a time, for what only you can supply.
+
+First, your standing question for each new stage: **what did previous projects teach us here, both what to carry forward and what to fix?**
+
+I already have one lesson from your notes. In an earlier project, the agents put lane assignment and payment into a login app (prior failure F1). The fix we're carrying forward is to state each app's job plainly and list what it must *not* do. Are there other lessons from earlier projects that this document should carry forward or fix?
+
+Phase 1 of 4: Ground and surface · done: idea, depth standard, starting point epic planning · next: lessons from earlier projects, then confirm the problem statement still holds
+
+### User · 01:26
+
+yes - i think we fixed this - in the previous attempt, the bowler was able to override the pinsetter's numbers in the scoring app - but I think i caught that earlier and stopped it
+
+### Claude · 01:26
+
+> _tool: Bash — Find where bowler override was caught_
+
+### Claude · 01:26
+
+> _tool: Bash — Record lessons F1 and F2 in decision record_
+
+### Claude · 01:26
+
+Yes, you caught it. On 3 November, in the intent map, I'd suggested a fallback where a bowler corrects a wrong count on the tablet. You withdrew it. The decision recorded then:
+
+- The pinsetter's count is the only source of truth.
+- Only the main desk corrects a roll, and desk corrections are deferred to a later release.
+
+So I've logged it as lesson **F2** in the decision record, next to F1:
+
+| | What went wrong before | How it's handled now |
+|---|---|---|
+| F1 | Agents put lane assignment and payment into a login app | No-go: no login, lane assignment or payment |
+| F2 | Bowlers could override the pinsetter's numbers in the scoring app | The pinsetter's count rules, and only the desk corrects |
+
+**What to carry forward:** in the intent map, F2's fix is only implied. It lives in a note about where the count comes from, and an agent planning epics could miss it, just as one did last time. I suggest stating it in the goal document as an explicit **Must**: *"Bowlers can never change a pin count on the tablet."*
+- **Pro:** an agent can't miss it, and the final readiness check can test for it.
+- **Con:** if you later want bowlers to fix an obvious miscount themselves, this rule has to be reopened on purpose.
+
+Shall that go in as an explicit Must?
+
+Phase 1 of 4: Ground and surface · done: starting point, lessons F1 and F2 recorded · next: your ruling on the F2 rule, then how we'll hear from the people using it
+
+### User · 01:27
+
+yssssss
+
+### Claude · 01:27
+
+> _tool: Bash — Record F2 Must as accepted_
+
+### Claude · 01:27
+
+Recorded as a Must: **"Bowlers can never change a pin count on the tablet."**
+
+Your second standing question for this stage: **how will we hear from the people using it?**
+
+Picture the first Friday night with the tablets running. A group finishes a game. Some of them loved seeing the score fill in. One of them got confused when the tablet asked for an extra ball in the 10th frame. And the owner wonders whether they'll come back.
+
+There are three groups whose views matter: the **bowlers**, the **owner**, and the **main desk staff**, who handle the "go to the desk" cases. How do you picture finding out what each of them thinks once the lanes are running? This could be something built into the app, something the staff do, or simply the owner watching and listening.
+
+Phase 1 of 4: Ground and surface · done: starting point, lessons F1 and F2 (with the F2 Must) · next: how we'll hear from users, then confirm the problem statement
+
+### User · 01:30
+
+the app should feel invisible, it's just like smart paper - you don't tell the paper you like it - only if you don't .... maybe (low priority) let the scoring app have a user field for complaints, since they'll never compliment a scoring app. For th rest, it's up to the humans to see how things are going
+
+### Claude · 01:30
+
+> _tool: Bash — Read the Problems and OKR from the map_
+
+### Claude · 01:30
+
+> _tool: Bash — Record feedback decision in decision record_
+
+### Claude · 01:31
+
+Recorded:
+- **The app asks for nothing.** No ratings, no surveys, no prompts.
+- **A complaint field is a "Could":** nice to have, cut first.
+- **Everything else is people watching.** That fits the objective you set in the intent map, where the owner tracks desk help requests, setup time, and the manager's walk-around marks.
+
+"Smart paper that feels invisible" sounds bigger than a feedback rule. It reads like the guiding idea for the whole app, and it matches both problems below. I've noted that as my suggestion, unclaimed for now. We'll test it when we get to how the app behaves.
+
+Next, I need to check that the problems from the intent map still hold. These two statements will open the goal document:
+
+1. **Score kept for everyone.** Bowlers need the score kept for them, so that everyone, including whoever would have kept score, is in the conversation and the celebrations. Today they can't, because one of them has to write every frame on paper by hand.
+2. **The score settles the rules.** Bowlers need to trust the score without working out the rules themselves, so the game stays friendly. Today they can't, because rules like two strikes in a row or the extra rolls in the 10th frame are confusing enough that the group argues over them.
+
+Do both still say what you mean, or would you change anything?
+
+Phase 1 of 4: Ground and surface · done: starting point, lessons F1 and F2, how we'll hear from users · next: confirm the two problems, then who the users are
+
+### User · 01:31
+
+alll good
+
+### Claude · 01:31
+
+> _tool: Bash — Record confirmed problem statements_
+
+### Claude · 01:31
+
+Both problems are confirmed and will go in unchanged.
+
+Next: **who the users are.** The document has to name everyone who touches the app, so agents don't invent extra people or leave someone out. Here's the cast I can see from the intent map. It's my list, unclaimed until you say so:
+
+| Who | What they do with it | Picture them when… |
+|---|---|---|
+| **Bowlers**, a group at one lane | Enter names in order, bowl, glance at the score | four friends walk up to lane 12 on a Friday night |
+| **Main desk staff** | Sort it out when a count is missing or wrong, and the lane waits | a bowler walks over saying "it didn't count my roll" |
+| **Owner / manager** | Doesn't use the tablet. Watches how it's going, and owns the objective (desk requests, setup time, walk-around marks) | doing a walk-around, marking lanes + or − |
+| **Whoever looks after the pinsetter app** | Makes the one change: sending "1st roll, n / 2nd roll, total" | running the demo that tests the riskiest assumption |
+
+Is anyone missing, or is anyone on the list who shouldn't be? For example, does anyone set up or switch on the tablets each day, or clear a lane between groups?
+
+Phase 1 of 4: Ground and surface · done: lessons, feedback approach, problems confirmed · next: who the users are, then what's in and out of the first release
+
+### User · 01:50
+
+hmmm "Main desk staff        │ Sort it out when a count is missing or wrong, and the lane    │ a bowler walks over saying "it  │
+│                        │ waits                                                         │ didn't count my roll""
+
+that raises a use case extension: suppose the pinsetter really makes a mistake, sends the scoring app the wrong score - the people go to the main desk - how does the main desk change the score? does the scoring app have some sort of "override" that the front desk can use to change the score?
+
+### Claude · 01:50
+
+Good catch. This opens a hole in what we decided.
+
+**What the notes already say** (from 3 November):
+- The **pinsetter app already has a manual override.** When a roll is wrong, the main desk fixes it there, and the bowler carries on with the corrected count.
+- You **deferred** desk corrections to a later release. The plan only promises that the scoring app can re-score a corrected roll *later*.
+- And the new Must: **bowlers can never change a pin count on the tablet.**
+
+**The hole:** in the first release as written, "go to the desk and play waits" has no ending. The desk fixes the count in the pinsetter, but nothing tells the tablet, so the tablet's score stays wrong, or the lane stays stuck.
+
+There are three ways the desk's fix could reach the score:
+
+| | How the desk fixes it | Pro | Con |
+|---|---|---|---|
+| **A** | Uses the pinsetter's existing override, and the pinsetter **sends a correction** to the tablet ("roll 7 was 8, not 3"). The tablet re-scores | One source of truth stays the pinsetter. The desk uses the tool it already has. F2 holds. | The pinsetter change grows: a correction message as well as the roll message |
+| **B** | A **staff-only override on the tablet**, for example behind a staff code | No more pinsetter work | Two places can change a count, which is the F2 risk again. A staff code is a kind of login, which you ruled out. The tablet and pinsetter can disagree |
+| **C** | **No fix in the first release.** The desk restarts the lane's game, or the group plays on with the wrong frame | Nothing extra to build | It breaks "above all, a correct score", and it's the moment a group stops trusting the score (problem 2) |
+
+**My suggestion: A.** It's the only route that keeps a single source of truth and doesn't bring back the problem you caught last time (F2). It also fits how your desk already works.
+
+How should the main desk's correction reach the score: A, B, C, or something else? (Once that's settled, I'll ask whether it belongs in the first release or stays deferred.)
+
+Phase 1 of 4: Ground and surface · done: lessons, feedback approach, problems confirmed · open: how desk corrections reach the score, and who the users are
+
+### User · 01:53
+
+yes, A, but now the pinsetter - scoring app interface has to handle a "change roll score" message
+
+### Claude · 01:53
+
+> _tool: Bash — Record decision A and new open questions_
+
+### Claude · 01:53
+
+Recorded: **A.** The desk corrects in the pinsetter, and the pinsetter sends a "change roll score" message that the tablet re-scores from. You're right that this adds a second kind of message between the two apps. I've also noted that the riskiest assumption, and its demo, now have to cover the correction as well as the normal roll.
+
+That new message raises a question only you can answer. Remember that **the pinsetter knows no frames and no players.** It only knows "my 1st roll" and "my 2nd roll". So a correction can't say "frame 4, Sam's 2nd ball", because the pinsetter has never heard of frame 4 or Sam.
+
+Picture it. Sam's 2nd ball knocks down 8, the pinsetter reports 6, and Sam walks to the desk.
+- **If the next ball hasn't been thrown yet:** the correction can simply mean "**the roll I just sent** was really 8". That's easy to match up, because the tablet knows which roll that was.
+- **If Jo has bowled two more balls by the time the desk acts:** "the roll I just sent" now points at Jo's ball. The correction would need some way to point further back, and that means the pinsetter would have to start numbering rolls. That's a bigger change.
+
+The notes say the override happens "after a roll". Does the desk only ever correct **the most recent roll, before the next ball is thrown**? Or can it go back and fix an older one?
+
+Phase 1 of 4: Ground and surface · done: lessons, feedback approach, problems confirmed, desk corrections go through the pinsetter (A) · next: which roll a correction can fix, then first release or later, then who the users are
+
+### User · 01:55
+
+before the next ball is thrown, only legal way to handle it - if the next bowler bowls, it's too late. For the project plan, we impement this in not-the-first-release, sometime later i don't know when. But yes, a second message
+
+### Claude · 01:55
+
+> _tool: Bash — Record correction rule and deferral_
+
+### Claude · 01:55
+
+Recorded:
+- **A correction fixes only the roll just sent, before the next ball.** That's the legal rule, and it keeps the message simple: "the roll I just sent was really 8". The pinsetter doesn't need to number its rolls.
+- **Corrections are built in a later release, date open.** The first release must not rule them out.
+
+That leaves a gap in the first release, and it pulls against your own top priority. You ranked **"above all, a correct score after every frame"**. Without the correction message, the first-release story goes like this:
+
+> Sam's ball knocks 8, the pinsetter says 6. Sam walks to the desk, and the desk fixes it in the pinsetter. The tablet never hears about it, so Sam's score stays 2 pins short for the rest of the game.
+
+So the first release needs an answer for that moment. Options:
+
+| | What happens in the first release | Pro | Con |
+|---|---|---|---|
+| **1** | The wrong count stands on the tablet, and the desk tells the group | Nothing extra to build | Breaks "above all, a correct score". This is exactly the argument problem 2 is meant to end |
+| **2** | Move the correction message into the first release after all | Keeps your top priority. The message is small, now that it only ever means "the roll I just sent" | More pinsetter work in release 1, and you'd planned it for later |
+| **3** | Keep corrections for later, but **lower "correct score" from "above all" to "correct whenever the pinsetter's count is right"** | Honest about what release 1 can promise | Weakens the promise the owner is selling |
+
+**My suggestion: 2.** Your ruling a moment ago, that a correction only ever fixes the roll just sent, shrank the job to one tiny message. It's the cheapest way to keep your own top priority. But it reverses a deferral you've now made twice, so this is your call.
+
+Which way: 1, 2, or 3?
+
+Phase 1 of 4: Ground and surface · done: problems confirmed, desk corrections via the pinsetter, latest-roll-only rule · next: the wrong-count case for the first release, then who the users are
+
+### User · 01:56
+
+the first iteration won't be a "release" it is just an iteration to see how things go.
+
+### Claude · 01:56
+
+> _tool: Bash — Record iteration reframe_
+
+### Claude · 01:56
+
+That changes the picture, and I've recorded it. The first thing built is a **trial iteration to see how things go**, not a release to customers. That takes most of the heat out of the wrong-count question. A trial can live with a known gap that a release couldn't.
+
+Whether it's fine depends on who's at the lane during the trial. Picture the first evening the trial runs:
+
+- **Staff, friends or regulars on one lane, who know it's a trial.** If Sam's 8 shows as 6, everyone laughs, someone notes it down, and the game goes on. A wrong count that stands (option 1) is fine, and it's even useful, because you learn how often the pinsetter gets it wrong.
+- **Ordinary paying customers who don't know it's a trial.** A score that stays wrong is the very argument problem 2 is meant to end, and they may blame the new tablets.
+
+Who bowls on the lanes during the trial iteration?
+
+Phase 1 of 4: Ground and surface · done: problems confirmed, desk corrections via the pinsetter, latest-roll-only rule, first iteration is a trial · next: who bowls during the trial, which settles the wrong-count case, then who the users are
+
+### User · 01:57
+
+people who know it's a trial, so don't worry
+
+### Claude · 01:57
+
+> _tool: Bash — Record trial wrong-count decision_
+
+### Claude · 01:57
+
+Settled. In the trial, a wrong count stays on the tablet, and that's fine because the bowlers know it's a trial. Corrections come in a later iteration.
+
+Back to the cast list from earlier. With what we now know, here it is again:
+
+| Who | What they do with it |
+|---|---|
+| **Trial bowlers**, a group at one lane who know it's a trial | Enter names in order, bowl, glance at the score |
+| **Main desk staff** | Fix a bad count in the pinsetter. In the trial the tablet won't hear about it; in a later iteration it will |
+| **Owner / manager** | Doesn't use the tablet. Watches how it's going, and owns the objective |
+| **Whoever looks after the pinsetter app** | Adds the roll message now, and the correction message later |
+
+Is anyone missing or wrong? For example, does someone have to switch the tablet on, or start it fresh for each new group?
+
+Phase 1 of 4: Ground and surface · done: problems confirmed, desk corrections designed and deferred, trial with people who know · next: who the users are, then what's in and out of the trial
+
+### User · 01:57
+
+good question - who initializes the app between groups? what do you think?
+
+### Claude · 01:58
+
+Here's my take. It's a proposal, unclaimed until you rule on it.
+
+**Two things we've already settled shape the answer:**
+- **No timers.** So the tablet can't wipe itself "after 10 minutes of nobody bowling".
+- **No lane assignment in the app** (lesson F1). So the desk can't reset it from the front counter as part of handing out lanes. That's exactly how the old project went wrong.
+
+**That leaves the people at the lane. My suggestion: the bowlers start it themselves, like turning to a fresh sheet of paper.**
+- When a game ends, the final scores stay on screen. You can still glance at them, like a finished score sheet left on the table.
+- The tablet offers two choices: **"Play again, same players"**, which keeps the names and order, and **"New group"**, which clears everything and goes to name entry.
+- The next group to walk up either sees the last group's final scores and taps "New group", or sees name entry straight away.
+- If a group leaves mid-game, "New group" is still there, but it asks "End this game?" first, so nobody wipes a game by accident.
+
+Weighing it:
+- **Pro:** no staff work, no timers, no link to the desk's lane system. It also matches "smart paper": you just turn the page.
+- **Con:** a careless tap could end someone else's game mid-way. The confirm step reduces that risk but doesn't remove it. That's a fair trade for a trial with people who know it's a trial.
+
+The alternative is staff walking over to reset each tablet. That costs staff time on every group, and in the trial it buys very little.
+
+Do you want it that way, with the bowlers starting each new group themselves using "Play again" and "New group"?
+
+Phase 1 of 4: Ground and surface · done: problems confirmed, desk corrections designed and deferred, trial with people who know · next: who starts each new group, then what's in and out of the trial
+
+### User · 01:59
+
+yes good eye
+
+### Claude · 01:59
+
+> _tool: Bash — Record new-group decision_
+
+### Claude · 01:59
+
+Recorded. Bowlers start each new group with **"Play again, same players"** or **"New group"**, and there's an "End this game?" check if they try it mid-game.
+
+That makes the cast list complete, as far as I can see:
+
+| Who | What they do with it |
+|---|---|
+| **Trial bowlers** (they know it's a trial) | Start a new group or play again, enter names in order, bowl, glance at the score |
+| **Main desk staff** | Fix a bad count in the pinsetter. The tablet hears about it only in a later iteration |
+| **Owner / manager** | Doesn't touch the tablet. Watches how it's going, and owns the objective |
+| **Whoever looks after the pinsetter app** | Adds the roll message now, and the correction message later |
+
+That's still my list until you say so. Is it complete as it stands?
+
+Phase 1 of 4: Ground and surface · done: problems confirmed, desk corrections designed and deferred, trial with people who know, bowlers start each group · next: confirm the cast, then what's in and out of the trial
+
+### User · 02:00
+
+all good
+
+### Claude · 02:00
+
+> _tool: Bash — Record confirmed cast_
+
+### Claude · 02:00
+
+The cast is confirmed.
+
+Next: **what's in and out of the trial.** I've sorted everything we've discussed into four piles. **Must** is in the trial no matter what. **Should** is in unless time runs short. **Could** is a nice extra, cut first. **Won't** is not this run. This sorting is my proposal, so all of it is unclaimed:
+
+**Must**
+- Bowlers start a group: "New group" or "Play again, same players", with "End this game?" if a game is in progress.
+- Enter names in bowling order, which starts the game.
+- The pinsetter sends "1st roll, n / 2nd roll, total" after every roll.
+- The tablet scores every frame correctly, including strikes, spares and the 10th frame.
+- In the two stuck 10th-frame endings, the tablet asks for one free extra ball and ignores its pins.
+- Bowlers can never change a pin count on the tablet (F2).
+- Final scores stay on screen after the game.
+
+**Should**
+- Show who bowls next. You ranked this "try to keep", one step below a correct score.
+
+**Could**
+- A complaint field.
+
+**Won't, this run**
+- The desk correction message. It's planned, and the design must allow for it.
+- Voice announcing the next bowler, and the strike celebration.
+- The clear-now command, and the display at the end of the lane.
+- Login, lane assignment, payment, timers, and phones.
+- Also things an engineer might assume are included: **saving names or scores between visits, score history, printing, handicaps, and league play.**
+
+The last line is the only one you haven't seen before. I added those because a builder could easily assume them.
+
+Would you move anything between piles, or add anything?
+
+Phase 1 of 4: Ground and surface · done: problems, cast, desk corrections, new-group flow · next: your ruling on the trial's in and out list, then limits like speed and reliability
+
+### User · 02:01
+
+let me look at that one more time - after the last bowler does the 10th frame, the scoring app just sits there, does nothing. Then either the currect group goes Next Game, or Start Over (for the next group, if they won't want their names and scores to stay up) ; or if they just leave, then next group hits "Next Game" or Start Over.
+
+### Claude · 02:01
+
+> _tool: Bash — Record end-of-game flow in user's words_
+
+### Claude · 02:01
+
+Recorded in your words, with your names for the buttons:
+
+- After the last bowler's 10th frame, the tablet **just sits there**, with the final scores up.
+- **Next Game** keeps the names and order and starts a fresh game.
+- **Start Over** clears the names and scores, either for privacy as a group leaves or for the next group.
+- If a group just walks away, the next group presses whichever suits them.
+
+So the Must line becomes: *"Next Game or Start Over; after the 10th frame the tablet sits showing final scores until someone presses one."*
+
+One small consequence, so it doesn't surprise anyone later: if a new group presses **Next Game**, they start with the previous group's names. That seems harmless, since they'd just press Start Over instead. I'm only naming it so it's a known behaviour, not a bug report later.
+
+With that change, does the rest of the in and out list stand: the Musts, "who bowls next" as a Should, the complaint field as a Could, and the Won't list including no saved names, history, printing, handicaps or leagues?
+
+Phase 1 of 4: Ground and surface · done: problems, cast, desk corrections, end-of-game flow · next: confirm the trial's in and out list, then limits like speed and reliability
+
+### User · 02:02
+
+no it's not harmless, becaues the previous group gets charged
+
+### Claude · 02:02
+
+> _tool: Bash — Record charging consequence and open question_
+
+### Claude · 02:02
+
+You're right. I called it harmless, and it isn't. Thank you for catching it. It's recorded with your correction.
+
+This opens something we haven't covered yet: **how charging works.** We ruled out payment *in the app*. But the trial's games still get charged somehow, and it turns out the names on a game decide who pays. Before I can propose a fix, I need to know how that works today.
+
+Picture a group finishing their second game and walking to the desk to pay. How does the desk know they played two games? Do they look at the pinsetter, ask the group, read the paper score sheet, or something else?
+
+Phase 1 of 4: Ground and surface · done: problems, cast, desk corrections, end-of-game flow · next: how the desk knows how many games a group played, then back to the in and out list
+
+### User · 02:03
+
+I would rather do this with a use case. Can you write a use case with extensions for me?
+
+### Claude · 02:03
+
+> _tool: Write — /Users/alistaircockburn/Desktop/OMNI/bowling-lane-scoring/docs/goal/use-case-play-a-game.md_
+
+### Claude · 02:03
+
+> _tool: Bash — Note the use case in decision record_
+
+### Claude · 02:03
+
+I've written it as `docs/goal/use-case-play-a-game.md`: **"Bowl a game at a lane"**, at user-goal level. The primary actor is the group at the lane, and the scope is the tablet's scoring app plus the pinsetter's messages.
+
+It's built from what you've decided so far. The whole thing is my draft, so it's unclaimed. Inside it:
+- **✋ marks my guesses.** For example, names can be fixed until the first ball is rolled.
+- **OPEN marks what only you can supply.**
+
+In outline:
+
+- **Main success scenario (10 steps):**
+  1. The group arrives and sees the last group's scores.
+  2. They press **Start Over**.
+  3. They enter names in order.
+  4–7. They bowl, with the tablet scoring from "1st roll, n / 2nd roll, total".
+  8. The final scores sit on screen.
+  9. The group leaves.
+  10. They pay at the desk.
+- **Extensions:**
+  - a game left mid-way, with "End this game?"
+  - the new group pressing **Next Game** by mistake (the charging problem)
+  - strikes and spares
+  - a wrong count, in the trial versus later
+  - a message that never arrives
+  - a bowler rolling out of turn
+  - the 10th-frame bonus balls, the clearing ball, and refusing to throw it
+  - **Next Game** versus **Start Over** at the end
+  - nobody can change a pin count
+- **Four open points**, with charging first, since it runs through step 10 and extensions 2a and 8a.
+
+Starting with step 10: when a group pays at the desk, how does the desk know how many games they played?
+
+Phase 1 of 4: Ground and surface · done: problems, cast, desk corrections, end-of-game flow, use case drafted · next: how charging works (open point 1), then the other open points in the use case
+
+### User · 02:05
+
+mmmm can you use the alistair cockburn form for writing a use case? in this case, skip the adornments at the top, but use the numbers and letters for steps and extensions
+
+### Claude · 02:06
+
+> _tool: Write — /Users/alistaircockburn/Desktop/OMNI/bowling-lane-scoring/docs/goal/use-case-play-a-game.md_
+
+### Claude · 02:06
+
+I've rewritten it in your form: `docs/goal/use-case-play-a-game.md`. Here's what changed:
+
+- **The header block is gone.** Only the title, Main Success Scenario, Extensions and Open issues remain.
+- **Steps are plain sentences, each led by who acts:** Group, Bowler, Tablet, Pinsetter, Desk staff.
+- **Extensions use the condition and colon form, then numbered handling steps,** for example *5c. Pinsetter reports the wrong count:* followed by 5c1–5c4.
+- **Nested extensions take longer labels:** 1b3a, 5c1a, 7a1a, and 7a1a2a for refusing the clearing ball.
+- **Each extension ends by saying where it goes,** such as "use case continues at step 4".
+- **\*a** covers "at any time": nobody can change a pin count.
+
+Two small changes to the content as I reworked it:
+- The 10th-frame clearing ball now nests under **7a**, the bonus balls, since it only happens after one.
+- 6b and 6c say "as 5b" and "as 5c", rather than repeating them.
+
+It's still all unclaimed. ✋ marks my guesses, and OPEN marks yours to supply. The first OPEN is still charging, which runs through **step 10, 2a2 and 8a3**.
+
+When a group pays at the desk, how does the desk know how many games they played?
+
+Phase 1 of 4: Ground and surface · done: problems, cast, desk corrections, end-of-game flow, use case in your form · next: how charging works, then the other open issues
+
+### User · 02:08
+
+i love this: "OPEN: how the desk knows how many games that was" .... haha good catch - it's an open problem all right
+
+### Claude · 02:08
+
+It really is open. It also matters more than it looks, because the answer decides whether **Next Game** is a charging risk at all.
+
+Let's start from today, with paper. Picture a group finishing up and walking to the desk. Which of these is closest to what happens now?
+
+- **The group says how many games they played**, and the desk trusts them.
+- **The desk counts the paper score sheets** they hand in.
+- **The desk reads a game count from the pinsetter**, for example how many full racks it has set.
+- **The alley charges by time, not by game.** If so, the Next Game problem disappears: it doesn't matter whose names are on the screen, only how long the lane was used.
+- Something else.
+
+How does the desk know today?
+
+Phase 1 of 4: Ground and surface · done: problems, cast, desk corrections, end-of-game flow, use case · next: how charging works today, then the other open issues in the use case
+
+### User · 02:24
+
+save it and keep it, it's time to close this session
