@@ -1,6 +1,6 @@
 # Conversation Transcript
 
-Session `ddd42720-15c3-4c92-8cdd-484cad1d8d5c` · last updated 2026-11-10 02:24 UTC
+Session `ddd42720-15c3-4c92-8cdd-484cad1d8d5c` · last updated 2026-11-10 02:29 UTC
 
 ### User · 23:53
 
@@ -1478,3 +1478,121 @@ Phase 1 of 4: Ground and surface · done: problems, cast, desk corrections, end-
 ### User · 02:24
 
 save it and keep it, it's time to close this session
+
+### Claude · 02:24
+
+> _tool: Bash — Write resume point, re-sync transcript, stage changes_
+
+### Claude · 02:24
+
+> _tool: Bash — Commit and push session work_
+
+### Claude · 02:25
+
+I've saved everything and pushed it to GitHub (commit `1a331d4`):
+
+- **The use case**, `docs/goal/use-case-play-a-game.md`, in your form, with the charging question kept as open issue 1.
+- **The goal decision record**, with a resume note. Next time we start by re-asking how the desk knows how many games a group played. The four candidates are saved: the group says, the desk counts sheets, the desk reads the pinsetter, or the alley charges by time.
+- **Today's transcript**, `bowling-transcript-20261109.md`, re-synced up to now.
+
+**Where we stopped:** goal writing, phase 1 of 4, working out the decisions. Also still to cover in phase 1:
+- the use case's other open issues (group size, a missing message, a roll out of turn)
+- confirming the in and out list
+- the "feels invisible" principle
+- limits such as speed and reliability
+- where the trial's proof runs
+- trade-off priorities
+- success criteria
+
+**To resume:** from this folder, say "restore the guide" first, then run `/omni-guide`.
+
+One last thing before you go. The guide bookmark is still in the shared place, `/Users/alistaircockburn/.omni-ee/guide-state.json`. Parking it would save a dated copy in this project as `.omni-ee/guide-state-parked-20261109.json` and clear the shared place, so your other project can start cleanly.
+
+Shall I park the guide now?
+
+### User · 02:26
+
+please copy the guide-state over as we discussed with the name you suggest
+
+### Claude · 02:26
+
+> _tool: Bash — Park the guide: dated copy, verify, delete original_
+
+### Claude · 02:26
+
+> _tool: Bash — Log the park, commit and push_
+
+### Claude · 02:26
+
+I parked the guide's bookmark, and the shared place is now empty. Your other project can start cleanly.
+
+- **Copied:** the bowling project's bookmark (run `guide-run-6138…`, at the stage before repository setup) to `.omni-ee/guide-state-parked-20261109.json` in this folder.
+- **Checked:** the copy is identical to the original. Both have the same fingerprint, `c0079999…a4523af7b`.
+- **Deleted:** the original at `/Users/alistaircockburn/.omni-ee/guide-state.json`. I left the `.lock` files alone.
+- **Logged and saved:** the park is noted in the session record. The parked file and the log are committed and pushed to GitHub (commit `d3c7cce`), so a copy also lives off this Mac.
+
+**Next time you come back to bowling:** open this folder and say **"restore the guide"**. I'll check the shared place is empty, copy `guide-state-parked-20261109.json` back (the parked copy stays here), and confirm OMNI can read it. Then we pick up goal writing at the charging question.
+
+**When you start the other project:** a new guide run will be created in the shared place. At the end of that session, say "park the guide" there too.
+
+### User · 02:26
+
+where have you recorded the procedure for starting a new session by copying the state file back over?
+
+### Claude · 02:27
+
+It's in two places, but neither of them reaches your new project yet:
+
+1. **In this project's session record:** `specs/intent-map/bowling-lane-scoring-session.md`, in the section "OMNI guide bookmark: park and restore". It gives both steps (park, then restore by copying back) and has the log. It's in the repo, so it's also on GitHub.
+2. **In my notes for this folder:** `/Users/alistaircockburn/.claude/projects/-Users-alistaircockburn-Desktop-OMNI-bowling-lane-scoring/memory/guide-state-park-restore.md`. That's the fuller version: check the shared place is empty first, copy the newest dated file back, keep the parked copy, then confirm OMNI can read it. It's also what makes me offer "park the guide" and "restore the guide" on my own.
+
+**The catch:** those notes are tied to *this folder*. When you open Claude in your other project's folder, I won't see them. So I wouldn't know the routine there, and I wouldn't remind you to park at the end of that session either.
+
+**The fix:** add a short version of the routine to your personal instructions file, `/Users/alistaircockburn/.claude/CLAUDE.md`. I read that file in every project. It would be a few lines under a heading like "OMNI guide bookmark": what "park the guide" and "restore the guide" mean, the dated file name, copy back on restore, never touch the lock files, and drop the routine once OMNI can move the bookmark itself.
+
+Shall I add it to your personal instructions file?
+
+### User · 02:27
+
+yes
+
+### Claude · 02:27
+
+> _tool: Read — /Users/alistaircockburn/.claude/CLAUDE.md_
+
+### Claude · 02:27
+
+> _tool: Edit — /Users/alistaircockburn/.claude/CLAUDE.md_
+
+### Claude · 02:27
+
+Now that the routine is in your personal instructions, I'm removing my folder-only copy so the two can't drift apart.
+
+### Claude · 02:27
+
+> _tool: Bash — Remove duplicate project memory and its index line_
+
+### Claude · 02:27
+
+I've added the routine to your personal instructions, `/Users/alistaircockburn/.claude/CLAUDE.md`, under a new heading **"OMNI guide bookmark"**. Claude reads that file in every project, so in your new project it will:
+
+- **Offer "restore the guide" at the start of every OMNI session**, before `omni start` or `/omni-guide`. It checks the shared place is empty, then copies the project's newest `guide-state-parked-*.json` back and keeps the parked copy. If a bookmark is already sitting there, it stops and tells you.
+- **Offer "park the guide" near the end.** It copies the bookmark into the project as `.omni-ee/guide-state-parked-YYYYMMDD.json`, checks the copy is identical, then deletes the original.
+- Never touch the lock files, and note each park and restore in that project's session record.
+- Drop the routine once OMNI can move the bookmark into the project itself.
+
+I also deleted my folder-only copy of the routine, so it lives in one place and can't drift. The short version in this project's session record stays, as part of the log.
+
+One gap: my reminder to re-sync the transcript is still a folder-only note, so it only applies here. Say the word if you want that in your personal instructions too.
+
+### User · 02:29
+
+yes please. also  - are the transcripts complete up to including this instruction?
+
+### Claude · 02:29
+
+> _tool: Edit — /Users/alistaircockburn/.claude/CLAUDE.md_
+
+### Claude · 02:29
+
+> _tool: Bash — Remove duplicate memory and re-sync today's transcript_
