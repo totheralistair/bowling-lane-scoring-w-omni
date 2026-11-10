@@ -1,6 +1,6 @@
 # Bowl a game at a lane
 
-_Draft, unclaimed. ✋ = agent's guess. OPEN = for the user to supply._
+_First cut, draft, unclaimed; second cut in use-case-play-a-game-cut2.md. ✋ = agent's guess. OPEN = for the user to supply._
 
 **Main Success Scenario:**
 
@@ -8,8 +8,8 @@ _Draft, unclaimed. ✋ = agent's guess. OPEN = for the user to supply._
 2. Bowler presses Start Over; Tablet clears the names and scores and shows name entry.
 3. Bowler enters the group's names in bowling order and starts the game.
 4. Tablet shows whose turn it is.
-5. Bowler rolls; Pinsetter sends "1st roll, n"; Tablet records it in that bowler's frame.
-6. Bowler rolls again; Pinsetter sends "2nd roll, total"; Tablet works out the second ball, scores the frame, and shows the next bowler.
+5. Bowler rolls; Pinsetter sends "1st roll, n"; Tablet records it in that bowler's frame and updates the scores according to the rules of bowling.
+6. Bowler rolls again; Pinsetter sends "2nd roll, total"; Tablet works out the second ball, updates the scores according to the rules of bowling, and shows the next bowler.
 7. Group repeats steps 4–6 until every bowler has finished the 10th frame.
 8. Tablet shows the final scores and waits.
 9. Group leaves the lane.
@@ -39,7 +39,7 @@ _Draft, unclaimed. ✋ = agent's guess. OPEN = for the user to supply._
 
 5a. Bowler knocks down all 10 pins on the 1st roll (strike):
   5a1. Pinsetter sends "1st roll, 10" and sets a new ten.
-  5a2. Tablet scores a strike and shows the next bowler; use case continues at step 4.
+  5a2. Tablet records a strike, updates the scores according to the rules of bowling, and shows the next bowler; use case continues at step 4.
 
 5b. Pinsetter's message never arrives:
   5b1. Group goes to the main desk; play on the lane waits.
@@ -59,7 +59,7 @@ _Draft, unclaimed. ✋ = agent's guess. OPEN = for the user to supply._
   5d2. OPEN: does that matter in the trial?
 
 6a. Bowler knocks down the remaining pins on the 2nd roll (spare):
-  6a1. Pinsetter sends "2nd roll, 10"; Tablet scores a spare; use case continues at step 4.
+  6a1. Pinsetter sends "2nd roll, 10"; Tablet records a spare and updates the scores according to the rules of bowling; use case continues at step 4.
 
 6b. Pinsetter's message never arrives: as 5b.
 

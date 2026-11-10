@@ -71,6 +71,8 @@ Taken from the completed Intent Map project "Bowling Lane Scoring" (`9734b3f5-3e
 
 - **Charging consequence (human, 2026-11-09):** the agent called it harmless that a new group pressing Next Game starts with the previous group's names. The human corrected this: "it's not harmless, because the previous group gets charged." Games played under a group's names are charged to that group. Open: how games reach the charge, given payment is a no-go in the app.
 
+- **Scoring arithmetic stays out of the use case (human, 2026-11-10):** "leave the scoring rules out of the use cases and just say 'scored according to the rules of bowling'". Raised by the human's check (strike, strike, strike, 7 spare, 2 3 = 94): the draft wrongly said a frame is scored straight after its 2nd ball. The agent tried a forward-looking rules table, then a backward-looking one (the human: a program can only see the current and previous balls); the human then chose to leave the rules out. The X X X 7/ 2 3 = 94 example remains a useful test case.
+
 ## Lessons from earlier projects
 
 | Id | What happened | Status | Carry forward |
@@ -81,6 +83,7 @@ Taken from the completed Intent Map project "Bowling Lane Scoring" (`9734b3f5-3e
 ## Open questions and unclaimed markers
 
 - Unclaimed: `docs/goal/use-case-play-a-game.md`, a use case with extensions drafted by the agent at the user's request (2026-11-09) to work through charging and the end of a game. Its ✋ items are agent guesses; its OPEN items are the user's.
+- Under discussion, not approved: `docs/goal/use-case-play-a-game-cut2.md`, the user's second cut (2026-11-10). Neither cut is approved; the first is kept for comparison.
 
 - How charging works: how the desk knows how many games a group played, and what the app must (or must not) do so a new group's game is never charged to the previous group.
 
