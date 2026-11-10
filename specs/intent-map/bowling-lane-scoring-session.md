@@ -5,17 +5,17 @@ Synthesis of settled decisions, who supplied them, why, what was rejected, and w
 ## Status
 
 - **Mode:** guided creation
-- **Current step:** 7 — Solution (step 6 Evaluation drafted 2026-11-03; gated at step 8)
+- **Current step:** COMPLETE: step 9 closed 2026-11-09. Every entity gated and read back from the CLI.
 - **Project:** Bowling Lane Scoring (`9734b3f5-3e03-4ca6-8601-d315526caaf0`)
 - **References read:** SKILL.md, references/method.md, references/operations.md
 - **Creation path:** incremental (user choice)
-- **Entities gated:** Situation `af5973c0-a13a-4b8b-8ae1-ab4393a5db1e`; P1 "Score kept for everyone" `6b32273d-580b-4cca-901c-de923419b41e`; P2 "The score settles the rules" `3ea7e223-9f1a-4126-9956-1596d0a8b4b5`; OKR "Bowlers take to the new lanes on their own" `1df92a72-bc88-4c69-9451-34e8cfb2214b`; Signal "Pins down and strike reset after each roll" `3f015676-71bb-4cf7-9bd9-3311b5c49265`; External Resource "Pinsetter app" `f09e0144-3895-44ee-8071-444e2ef0a080` (readiness partial); Options "Free clearing roll" `45ef9b12-96e8-40ff-9282-c2eb192cb59f` and "Clear-now command (deferred feature)" `43ae809b-c6d6-4789-804f-fc494098dc95`. **Draft, not gated:** Evaluation `5d68900a-bd65-47ab-8095-b8b3245ff037` (gated at step 8)
-- **Open questions:** (1) whether "their app" runs on the lane console/tablet or on bowlers' phones (step 7); (2) the responsibility split between the two apps is architecture work after step 9, tied to prior failure F1; (3) the Solution draft awaits the user's yes/changes; (4) the Evaluation's riskiest assumption awaits confirmation. Settled since: the pinsetter knows no frames and stays free of rules; frame scoring lives in the scoring app; the free clearing roll is the choice for now.
-- **Unclaimed markers:** (1) the Evaluation's riskiest assumption (pinsetter clears after its 2nd roll in the stuck endings, even on a zero-pin ball) is agent-proposed, user has not confirmed; (2) the whole Solution draft in the step 7 log, especially appetite and rabbit holes, which are the agent's
+- **Entities gated:** Situation `af5973c0-a13a-4b8b-8ae1-ab4393a5db1e`; P1 "Score kept for everyone" `6b32273d-580b-4cca-901c-de923419b41e`; P2 "The score settles the rules" `3ea7e223-9f1a-4126-9956-1596d0a8b4b5`; OKR "Bowlers take to the new lanes on their own" `1df92a72-bc88-4c69-9451-34e8cfb2214b`; Signal "Roll number and pins down after each roll" (revised 2026-11-09) `3f015676-71bb-4cf7-9bd9-3311b5c49265`; External Resource "Pinsetter app" `f09e0144-3895-44ee-8071-444e2ef0a080` (readiness partial); Options "Free clearing roll" `45ef9b12-96e8-40ff-9282-c2eb192cb59f` and "Clear-now command (deferred feature)" `43ae809b-c6d6-4789-804f-fc494098dc95`. Evaluation `5d68900a-bd65-47ab-8095-b8b3245ff037` "Free clearing roll beats rules in the pinsetter" and Solution `e7ad4fa7-b267-4623-8a7e-67c132c71547` "Lane tablet keeps score for the group" (both gated 2026-11-09 at step 8; Solution renamed the same day)
+- **Open questions:** (1) settled 2026-11-09: lane tablet; (2) the responsibility split between the two apps is architecture work after step 9, tied to prior failure F1; (3) settled 2026-11-09: Solution draft accepted and created; (4) settled 2026-11-09: riskiest assumption replaced (pinsetter app can send each roll to the tablet). Settled since: the pinsetter knows no frames and stays free of rules; frame scoring lives in the scoring app; the free clearing roll is the choice for now.
+- **Unclaimed markers:** (1) resolved 2026-11-09; (2) resolved 2026-11-09: the Solution, including appetite and rabbit holes, was accepted and gated
 - **Ordering crossings:** none
 - **10th-frame table: corrected 2026-11-03 (user + agent), no longer disputed.** See the corrected table in the step 4 log. The earlier wording "spare (completes the 10)" was too narrow; the user's example strike, 3, 4 (3 pins left) is a clean finish, because the pinsetter treats the 3 and the 4 as its own 1st and 2nd rolls and clears after the 4.
-- **Next user contribution:** SAVED 2026-11-03 at step 7. Read the Solution draft in the step 7 log and say "yes" or what to change (appetite and rabbit holes are the agent's guesses). Then the agent saves it as a draft Solution, runs the step 8 challenge on the whole chain, and gates the Evaluation and Solution.
-- **Signal S1: created and gated 2026-11-03** (see step 4 close). The earlier open questions about what the pinsetter reports are settled: pin count per roll plus the reset event.
+- **Next user contribution:** choose the next move after the strategy: the goal document (return route to omni-guide → goal document → omni-gate), or more strategy work. Also outstanding outside the map: the pinsetter demo (cheapest test) and the omni-guide phase move (blocked).
+- **Signal S1: created and gated 2026-11-03** (see step 4 close). Revised 2026-11-09: it now reports roll number (1st/2nd) and pins down so far; the earlier pin count per roll plus the reset event.
 - **Context:** routed from omni-guide; return route = goal document → omni-gate. User wants one question per turn.
 
 ## Log
@@ -202,6 +202,37 @@ Presented to the user 2026-11-03; session saved before the user replied.
 - **No-gos (user):** no rules in the pinsetter; no timers in either app; no login, lane assignment, or payment.
 - **Rabbit holes (agent):** re-scoring after a desk correction; the display at the end of the lane (out of scope per the user).
 - **Tablet vs phones:** whether "their app" runs on the lane console or on bowlers' phones is still open (carried from step 1); the user said tablet-style earlier.
+- **Resumed 2026-11-09** from omni-guide, after repository setup (binding now `bowling-lane-scoring-w-omni`). The guide run stays in `pre_repo`: its move into project scope is blocked, because no supported command advances the phase, and will be retried after an omni-ee update. The Solution draft was re-presented for the user's yes or changes.
+- **Appetite settled (agent-proposed, user accepted "yes", 2026-11-09):** small, meaning one new scoring app at the lane plus one pinsetter change (report pins down and reset after every roll). Give-way order: (1) above all, a correct score after every frame, including strikes and the 10th frame; (2) try to keep showing who bowls next; (3) give up first: polish (name entry, how the score looks). Tablet vs phones goes to step 8 as the first challenge.
+- **Solution created 2026-11-09 (user "yes" to the preview):** draft `e7ad4fa7-b267-4623-8a7e-67c132c71547`, chained from the Evaluation and read back from the CLI. The rabbit holes were agent-proposed and are now claimed through that yes.
+- **Step 8 opened:** first challenge is tablet vs phones.
+- **Challenge 1 settled (user, 2026-11-09): lane tablet.** Agent recommended it (serves both bowlers' and owner's stakes; phones would add a join-phone-to-lane rabbit hole). Solution UI notes updated and read back. Closes the open question carried from step 1.
+- **Challenge 2 settled (agent-proposed, user accepted "good proposal, yes use it", 2026-11-09):** riskiest assumption is now that the pinsetter app can be changed cheaply to send pins down and the reset to the lane tablet after every roll. Cheapest test: whoever looks after the pinsetter app shows one roll's pin count and a reset arriving on another device before any scoring is built. The old assumption (clears after 2nd roll on a zero-pin ball) was retired because the user stated it as fact in step 6. Evaluation updated and read back.
+- **Signal gap found (user, 2026-11-09):** the user asked what the pinsetter sends for a 3 then a 3. Per the gated Signal, both messages would be "3, no reset": identical, so the tablet could not tell the pinsetter cleared after its 2nd roll, and the two apps could drift after an override or in the stuck 10th-frame endings. Gating held; step 4 reopened.
+- **Message format settled (user, 2026-11-09):** the pinsetter sends which of its two rolls it was and the total pins down so far in that roll pair, e.g. "1st roll, 3" then "2nd roll, 6". The tablet derives the 2nd ball as 6 − 3.
+- **"Resetting" dropped (agent-proposed, user accepted "yes", 2026-11-09):** reset is implied by the pinsetter's own rules (always after a 2nd roll; after a 1st roll of 10). Cost: a pinsetter jam goes unreported, which the desk fallback already covers.
+- **Assumption (user said "I suspect"):** the pinsetter knows the pins left standing at its 2nd check. Folded into the cheapest test: the demo must show both "1st roll, 3" and "2nd roll, 6" arriving on another device.
+- **Revision applied (user approved the preview, "good", 2026-11-09):** Signal retitled "Roll number and pins down after each roll" with new what-must-know, minimum version, prerequisites and reliability (assumption added). Evaluation winner rationale, riskiest assumption and cheapest test, and Solution flow step 3 and appetite, now say "roll number and pins down so far". All three read back from the CLI: Signal still gated; Evaluation and Solution draft.
+
+### Step 8 close
+- **Evaluation and Solution gated (user: "yes please 'gate them'", 2026-11-09)** after the agent explained gating in plain words (the user had asked what it meant). Challenger outcomes: tablet chosen over phones; riskiest assumption replaced; the Signal sync gap (found by the user) fixed; misleading count, refused clearing ball, extra ball outside the rules, and deferred desk corrections were each already handled in the map. Surviving assumptions, each with a test: the pinsetter app can be changed cheaply to send roll number and pins down so far; the pinsetter knows the pins left standing at its 2nd check. Both are covered by one demo.
+
+### Step 9 — Close
+- Read back from the CLI on 2026-11-09. Gated: Situation; Problems P1 and P2; OKR; Signal "Roll number and pins down after each roll"; Options "Free clearing roll" and "Clear-now command (deferred feature)"; Evaluation; Solution. External Resource "Pinsetter app" (service, owner alley, readiness partial).
+- Relations read back: chain Situation→P1, Situation→P2, P1→OKR, P2→OKR, OKR→Signal, Signal→both Options, both Options→Evaluation, Evaluation→Solution; resource-dependency Signal→Pinsetter app. These match what the user approved.
+- No unclaimed content remains open. Learning-loop trigger: when the pinsetter demo runs, update the Evaluation with its result.
+- Transcript exported to `bowling-transcript-20261109.md`. The user asked for periodic reminders to re-sync it.
+
+- **Solution renamed (user, 2026-11-09, during goal writing):** from "Lane scoring app with a free clearing roll" to "Lane tablet keeps score for the group". The user pointed out the clearing roll is a 10th-frame detail, not the headline. Only the title changed; the entity is still gated (read back).
+
+
+## OMNI guide bookmark: park and restore (set up 2026-11-09)
+The OMNI guide keeps one bookmark per Mac at `/Users/alistaircockburn/.omni-ee/guide-state.json`. It could not yet be moved into this project. Until it can, the user swaps it between projects by hand:
+- **"park the guide"** (end of session): copy it to `.omni-ee/guide-state-parked-YYYYMMDD.json` in this folder, check the copy, then delete the original. Never touch the `.lock` files.
+- **"restore the guide"** (start of session): check the common place is empty, then **copy** the newest parked file back to `~/.omni-ee/guide-state.json`. The parked file stays.
+
+Log of parks and restores:
+- _(none yet)_
 
 ## How to resume
 Run `/intent-map resume Bowling Lane Scoring` from `~/Desktop/OMNI/bowling-lane-scoring`. The project is `9734b3f5-3e03-4ca6-8601-d315526caaf0`. The CLI can be slow: use a 100-second timeout and check with `intent-map relation list <id>` before retrying a write, so nothing gets duplicated.
