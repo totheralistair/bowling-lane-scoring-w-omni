@@ -232,7 +232,7 @@ The OMNI guide keeps one bookmark per Mac at `/Users/alistaircockburn/.omni-ee/g
 - **"restore the guide"** (start of session): check the common place is empty, then **copy** the newest parked file back to `~/.omni-ee/guide-state.json`. The parked file stays.
 
 Log of parks and restores:
-- _(none yet)_
+- **2026-11-09, parked** at the end of the session: run `guide-run-6138fc610d01f46f38cdd473c5fadb51` (phase pre_repo) copied to `.omni-ee/guide-state-parked-20261109.json`. The sha256 `c0079999…a4523af7b` matched the original, which was then deleted from `~/.omni-ee`. Lock files untouched.
 
 ## How to resume
 Run `/intent-map resume Bowling Lane Scoring` from `~/Desktop/OMNI/bowling-lane-scoring`. The project is `9734b3f5-3e03-4ca6-8601-d315526caaf0`. The CLI can be slow: use a 100-second timeout and check with `intent-map relation list <id>` before retrying a write, so nothing gets duplicated.
