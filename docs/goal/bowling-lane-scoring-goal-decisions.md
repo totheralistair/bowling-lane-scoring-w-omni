@@ -15,10 +15,11 @@ A summary of how each decision behind the goal document was made: who decided, w
 - **Phase:** 1, Ground and surface (phase 0 closed 2026-11-09)
 - **Depth:** standard (agent-proposed, human accepted "yes", 2026-11-09)
 - **Entry point (altitude):** `general-objective`, i.e. epic planning (agent-proposed, human accepted "yes", 2026-11-09)
-- **Next contribution only the human can make:** how charging works today: how the desk knows how many games a group played (use case open issue 1). The user called it a real open problem. The question asked at session close offered: the group says, the desk counts paper sheets, the desk reads the pinsetter, or the alley charges by time (which would remove the Next Game charging risk).
-- **Session closed 2026-11-09** in phase 1. Resume with `/goal-writing` (or `/omni-guide`), read this record and `docs/goal/use-case-play-a-game.md`, and re-ask the charging question.
+- **Next contribution only the human can make:** the open items in `docs/goal/use-case-play-a-game-cut3.md`: the rule for rolls after the 10th frame (6a); whether to add an extension for a pinsetter message arriving out of order; who "the manager" is (desk staff or owner/manager).
+- **Session closed 2026-11-11** in phase 1. Charging is settled (see Decisions, 2026-11-11). Resume with `/goal-writing` (or `/omni-guide`), read this record and the third cut, and ask the open items one at a time.
+- **Guide bookmark:** at session start it was already in `~/.omni-ee` for this project's run; parked at close as `.omni-ee/guide-state-parked-20261111.json` (shasum checked).
 - **Outside goal writing:** the OMNI bug report is drafted at `docs/omni-feedback/2026-11-09-guide-state-cannot-move-to-project.md`; the user will send it to the OMNI team.
-- **Still to cover in phase 1 after charging:** the rest of the use case's open issues (group size, a missing message in the trial, a roll out of turn); the agent's in/out list (unclaimed); the "feels invisible" principle (unclaimed); limits such as speed, reliability and security; the proof environment (where the trial's proof runs; the pinsetter demo); trade-off priorities; success criteria.
+- **Still to cover in phase 1:** the third cut's open items; the manager's use cases (game count and Reset; Reset by login); the LM app to tablet exchange; the group size; the agent's in/out list (unclaimed), including whether the LM app connection is in the trial or the desk asks the group; the "feels invisible" principle (unclaimed); limits such as speed, reliability and security; the proof environment (where the trial's proof runs; the pinsetter demo); risks (add the LM app connection beside the pinsetter); trade-off priorities; success criteria (measure-then-target). Readiness gaps against `general-objective` were listed in the session of 2026-11-11.
 
 ## Idea (hypothesis)
 
@@ -73,6 +74,18 @@ Taken from the completed Intent Map project "Bowling Lane Scoring" (`9734b3f5-3e
 
 - **Scoring arithmetic stays out of the use case (human, 2026-11-10):** "leave the scoring rules out of the use cases and just say 'scored according to the rules of bowling'". Raised by the human's check (strike, strike, strike, 7 spare, 2 3 = 94): the draft wrongly said a frame is scored straight after its 2nd ball. The agent tried a forward-looking rules table, then a backward-looking one (the human: a program can only see the current and previous balls); the human then chose to leave the rules out. The X X X 7/ 2 3 = 94 example remains a useful test case.
 
+### 2026-11-11
+
+- **Transition cases (human's analysis, 2026-11-11):** what a new group can face depends only on how the previous group left (reset, full games, part game) and what the new group presses; "found state doesn't matter". Six cases; the agent's separate "New Game then left" case is a part game (human). The agent had missed "part game, then New Game".
+- **Arrival table (human, 2026-11-11):** an extension table lists all and only the transition steps, with the "End game…?" checks shown in it for readability. Start Over or New Game pressed during a group's own game belongs in an "at any time" extension. Rejected: the agent's grouping by outcome (good/broken billing) and moving the checks out of the table.
+- **New Game can be pressed mid-game (implied by the human's table, 2026-11-11).**
+- **Billing through the Lanes Manager app (human, 2026-11-11):** the LM app does not assign a lane to a new group until the previous group pays. At payment the LM app asks the tablet how many games were started since the last Reset, then sends Reset; the tablet shows a blank sheet, "Enter Players". The LM app also resets at the start of the day. A connection between the LM app and the tablets already exists (human). So a new group always finds a blank sheet, and the arrival table's broken-billing rows go away. Reverses the 2026-11-09 rejection of a desk reset: that one was tied to lane assignment; this one is tied to payment, and lane assignment stays in the LM app. Fallback, "a starting point": the desk asks the group how many games (human).
+- **A game starts at its first roll (human, 2026-11-11):** every started game is reported, finished or not; "if the manager wants to discount a partial game, it's their option, not part of the reporting". Agent note, unclaimed: Start Over pressed at the lane should not zero the count; only the LM app's Reset does.
+- **Manager login on the tablet (human, 2026-11-11):** "mark a separate login for the manager, who will get their own use case(s)". First use: Reset when the LM app's Reset does not arrive. Exception to the "no login" no-go. Agent-proposed wording, not yet confirmed: manager actions only; bowlers never log in; lane assignment and payment stay in the LM app (F1).
+- **"All done" is defined by paying (human, 2026-11-11):** "they just walk away when they feel done." No "All done" question on the tablet.
+- **Pinsetter message (human's third cut, 2026-11-11):** roll number (1st or 2nd) and pins currently down, i.e. the total so far on that rack. The pinsetter knows nothing of the 10th frame, so the stuck 10th-frame case stays: "3rd roll in 10th frame leaves the Pinsetter waiting for its 2nd roll (e.g. XX3 or 5/2; X34 is not a problem)" (human's wording, agent's tweak). Closes the second cut's open issue 5.
+- **Use cases cover only what the app can detect (human, 2026-11-11):** "the software only has to deal with conditions the app can detect". So a roll out of turn is dropped, and F2 ("bowlers can never change a pin count") is not stated in the use case; it goes into the goal document's constraints as a Must. A lost pinsetter message is undetectable, but a message arriving out of order is detectable (agent; open).
+
 ## Lessons from earlier projects
 
 | Id | What happened | Status | Carry forward |
@@ -84,8 +97,9 @@ Taken from the completed Intent Map project "Bowling Lane Scoring" (`9734b3f5-3e
 
 - Unclaimed: `docs/goal/use-case-play-a-game.md`, a use case with extensions drafted by the agent at the user's request (2026-11-09) to work through charging and the end of a game. Its ✋ items are agent guesses; its OPEN items are the user's.
 - Under discussion, not approved: `docs/goal/use-case-play-a-game-cut2.md`, the user's second cut (2026-11-10). Neither cut is approved; the first is kept for comparison.
+- Under discussion, not approved: `docs/goal/use-case-play-a-game-cut3.md`, the user's third cut (2026-11-11), with its open items. The user's working copy is `bowling use case.docx`.
 
-- How charging works: how the desk knows how many games a group played, and what the app must (or must not) do so a new group's game is never charged to the previous group.
+- Charging: settled 2026-11-11 (LM app asks the count, then resets).
 
 - Unclaimed: the agent's proposed Must/Should/Could/Won't scope list for the trial (proposed 2026-11-09).
 
