@@ -237,3 +237,45 @@ Log of parks and restores:
 ## How to resume
 Run `/intent-map resume Bowling Lane Scoring` from `~/Desktop/OMNI/bowling-lane-scoring`. The project is `9734b3f5-3e03-4ca6-8601-d315526caaf0`. The CLI can be slow: use a 100-second timeout and check with `intent-map relation list <id>` before retrying a write, so nothing gets duplicated.
 
+
+## 2026-11-12 — Use case, fourth cut
+- Guide offered to start the Goal document. User: "i'm working on the use case still.... here's where I am", pasting the 3rd Try (steps renumbered 1–6, 3a trigger reworded) and asking to "Paste/update from the original use case the case of the 10th frame and any other conditions we need to handle".
+- Agent merged cut 1's extensions into `docs/goal/use-case-play-a-game-cut4.md`, marked (from cut 1) / (my guess). Not approved.
+- Guesses open (Use case): step 4 "repeats step 5" should read step 3; Start Over / Next Game / old scores left out because the manager's reset replaces them; new case "group leaves without paying"; 5a wording.
+- Asked 1: is the 10th-frame piece (3a, 3a1) right?
+- User does not want drafts in files with confirm questions: "please just print here the extensions". Agent printed options (a), (b), (c) for 4a in the chat.
+- **4a decided (user):** option (b), a roll after the 10th frame starts a new game automatically with the same names and order; that game is counted and charged. User wrote it into their own copy.
+- User asked for the next extension their version doesn't handle yet: agent gave 3a1, bowler won't throw the clearing ball (from cut 1).
+- User wrote 3a: "it ignores the number the pinsetter sends." Agent noted the clearing ball could trip 4a. **4a settled (user wording):** "Bowlers keep rolling balls after the final bowler's 10th frame (including any last clearing roll), when the game is technically over: Tablet starts a new game automatically with the same names and order. The completed game is counted and charged."
+- Next: 3b, wrong pin count, printed from cut 1.
+- User rewrote 3b: desk fixes the number in the pinsetter; Pinsetter sends "Correct roll score" (roll number, pins down); Tablet updates the score. 3c: next ball already bowled, correction ignored ("I don't think this can happen, but ok").
+- **Scope change (user "yes", 2026-11-12):** "Correct roll score" is in the trial. This reverses the earlier "trial: wrong count stands" and the Intent Map Solution's "Deferred: main-desk corrections"; the Solution on the map still says deferred.
+- 3c revised (user): "Case 3b but a bowler has already bowled the next ball before the pinsetter got corrected".
+- Agent listed further cases; numbering: 1a group size, 3d message never arrives, 3e out of turn, 3f out-of-order message, 6a leaves without paying. *b (change pin count on Tablet) dropped by user: "can't happen because the tablet has no input option for that"; carry "no pin-count entry on the Tablet" to the Goal document as a limit.
+- User wrote: "1a. Too many bowlers for the lane: Out of scope." "3d. Pinsetter's message never arrives: Out of scope (the tablet can't detect)".
+- Asked 1: Decision Map entry for "Correct roll score in the trial" (unanswered).
+- **Out of scope (user, 2026-11-12), listed in the use case as "Extensions out of scope":** 1a too many bowlers for the lane; 3d pinsetter's message never arrives (tablet can't detect); 3e bowler rolls out of turn (tablet can't detect); 3f pinsetter message arrives out of order; 6a group leaves without paying. This settles readiness question 9 (out-of-order message: not in the trial).
+- Asked 1: can a game start with no names entered?
+- User's revised extensions: *b new player added mid-game (rolls of zero until caught up); 1a roll before names entered starts a game with "Player 1" (1-person game if more rolls follow); 3a examples X.X.3 / 5./.2 / X.3.4; out-of-scope 1a renumbered 1b.
+- User spotted the use case never counted games. Agent wrongly asked "finished or started?"; it was settled 2026-11-11 (decision record line 83).
+- **Step 2 (user):** "The Tablet always indicates whose turn it is, which roll it is and how many games are being charged. A game is charged the moment the first roll is made. Charges are for games /started/ not games /finished/." New: the Tablet shows the game count.
+- 4a final (user): last line "The completed game is counted and charged" deleted; step 2 covers charging.
+- **Use case extensions finished (2026-11-12).** Tidied at the user's request: fourth cut rewritten with the user's final text (`docs/goal/use-case-play-a-game-cut4.md`); today's decisions added to `docs/goal/bowling-lane-scoring-goal-decisions.md`; transcript `bowling-transcript-20261112b.md`. Next: the Goal document.
+- Goal document resumed (phase 1). Open items: who the manager is; LM app link in the trial; who builds the pinsetter change; where the trial is proven; tablet platform; Must/Should/Could/Won't; manager-login wording; manager's own use case.
+- Asked 1: who resets the tablet at payment (desk staff or owner/manager)?
+- **Manager settled (user):** "a person, we shouldn't care." A role, not a named job. Asked 1: is the LM app link in the trial?
+- **LM app link (user):** in the trial; hexagonal architecture and test-first; the test setup plays the LM app. Asked 1: who builds the pinsetter change?
+- **Pinsetter (user):** out of scope; assume it gets done in time; work from test harnesses to start with. Asked 1: harnesses only in this run?
+- **Proof (agent-proposed, user "yes"):** harnesses only; no real lane or live LM app; real connection later. Asked 1: what does the tablet run on?
+- **Platform (agent-proposed, user "ok, as you choose"):** web app on a lane tablet; phones by QR code later.
+- **Scope format (user):** "i don't use Moscow; i'll make an 'in/out' list, what is in scope for any particular increment or release, and what is out." Agent drafted an in/out list for the trial from the record (my guess).
+- **Manager login (user):** in for the first release, out of the trial run. Wording parked to the first release. Guesses open (in/out list): every other line of the agent's table. Asked 1: which other line is wrong?
+- **In/out list accepted (user: "is all good").** Guesses open (in/out list): none. Next: give-way order, limits, proof of success.
+- **Give-way order confirmed (user "yes").** Asked 1: are names kept after the reset?
+- **After reset (user):** "gone for good, no record". Asked 1: does a game survive a tablet reload mid-game?
+- **Reload (agent-proposed, user "ok then, yes"):** game and count come back after a reload; erased only at reset. Asked 1: is the set of known games the proof?
+- **Acceptance (user):** "we'll make new tests cases from the use case and any other information that becomes relevant - that set of test cases defines acceptance." Agent's game list rejected. **Phase 1 closed.**
+- User asked when OMNI builds and reviews the test cases. Agent: after the Goal document, agents write stories with acceptance criteria, an agent reviews them, coders write tests first; whether a human checkpoint shows the stories is unverified. Open (raised by agent, not asked): does the user want to review the test cases before coding?
+- **Challenge, stray ball (user):** "every roll counts. Period." Discounting is the manager's call, out of scope.
+- Asked 1: changing order between a bowler's 1st and 2nd roll — who throws next?
+- **Session saved 2026-11-12 (user's laptop battery).** Resume in phase 2 with the mid-frame reorder question.
